@@ -9,21 +9,22 @@ class TestBear < MiniTest::Test
 
   def setup
     @bear = Bear.new('hercules', 'grizzly')
+    @fish = Fish.new('carp', 1)
+    @river = River.new('clyde', 2)
   end
 
-  def test_species_of_river
+  def test_species_of_bear
     assert_equal('grizzly', @bear.species)
   end
 
   def test_bear_hungry
-    assert_equal(0, @bear.bear_hungry)
+    assert_equal([], @bear.hungry)
   end
 
   def test_can_bear_cacth_fish
-  #   fish_1 = Fish.new('pike')
-  #   @bear.pick_up(fish_1)
-  #   assert_equal(1, @bear.catch_fish)
-  # end
+    @bear.hungry.push(@river.remove_fish_from_river(1))
+    assert_equal([1], @bear.hungry)
+  end
 
 
 
